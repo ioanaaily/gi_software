@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import api from '../api/axiosConfig';
+import SEO from '../components/SEO';
 
 const ArticlePage = () => {
   const { slug } = useParams();
@@ -28,11 +29,39 @@ const ArticlePage = () => {
   }, [slug]);
 
   if (loading) return <div className="text-center py-8">Loading article...</div>;
-  if (error) return <div className="text-center py-8 text-red-600">{error}</div>;
-  if (!article) return <div className="text-center py-8">Article not found</div>;
+  if (error) return (
+    <>
+      <SEO 
+        title="Error - Article Not Found"
+        description="There was an error loading the requested article."
+        canonical="/error"
+      />
+      <div className="text-center py-8 text-red-600">{error}</div>
+    </>
+  );
+  if (!article) return (
+    <>
+      <SEO 
+        title="Article Not Found"
+        description="The requested article could not be found."
+        canonical="/not-found"
+      />
+      <div className="text-center py-8">Article not found</div>
+    </>
+  );
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
+      {/* SEO for this specific article */}
+      <SEO 
+        title={article.title}
+        description={article.excerpt}
+        keywords={`${article.category}, AI, artificial intelligence, ${article.title.toLowerCase()}`}
+        canonical={`/news/${slug}`}
+        ogType="article"
+        ogImage={article.image_url || '/default-article-image.jpg'}
+        article={article}
+      />
       {/* Back button */}
       <Link to="/news" className="flex items-center text-blue-600 hover:text-blue-800 mb-6">
         <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

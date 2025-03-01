@@ -1,10 +1,17 @@
 import React from 'react';
+import SEO from './SEO';
 
 // The simplest possible component that doesn't use any dynamic data
 function EmergencyNewsComponent() {
   // This will always render static content without any API calls
   return (
     <div style={{padding: '20px', maxWidth: '1200px', margin: '0 auto'}}>
+      <SEO 
+        title="AI News - Latest AWS, GCP & Artificial Intelligence Updates"
+        description="Stay up-to-date with the latest AWS, Google Cloud Platform, and AI news. Expert analysis on cloud services, machine learning, neural networks, and more."
+        keywords="AWS news, GCP news, Google Cloud Platform, Amazon Web Services, cloud computing, AI news, artificial intelligence, machine learning, neural networks, computer vision, NLP, AI breakthroughs, AI research"
+        canonical="/news"
+      />
       <h1 style={{fontSize: '24px', textAlign: 'center', marginBottom: '20px'}}>
         AI News
       </h1>

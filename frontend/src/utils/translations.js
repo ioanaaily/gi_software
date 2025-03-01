@@ -87,54 +87,62 @@ const translations = {
     servicesSubtitle: 'Innovative solutions to transform your business',
 
     // Service cards
-    service_digitalisation: 'Digitalisation',
-    service_digitalisation_desc: 'Revolutionize your business with digital transformation. We automate workflows, optimize operations, and integrate the latest technologies for seamless efficiency.',
-    service_ai_integrations: 'AI Integrations',
-    service_ai_integrations_desc: 'Implement AI-driven solutions that enhance efficiency, automation, and decision-making. From chatbots to predictive analytics, we embed AI into your business.',
-    service_admin_systems: 'Admin Systems',
-    service_admin_systems_desc: 'Control your platform with robust admin tools. We build user-friendly dashboards that simplify content management, analytics, and security.',
-    service_web_applications: 'Web Applications',
-    service_web_applications_desc: 'We craft modern, scalable web applications tailored to your needs. From simple websites to complex platforms, we deliver excellence.',
-    service_mobile_applications: 'Mobile Applications',
-    service_mobile_applications_desc: 'Create intuitive, high-performance mobile apps for iOS and Android platforms that engage users and deliver seamless experiences.',
+    service_digitalisation: 'Digitalisation & Digital Transformation',
+    service_digitalisation_desc: 'Revolutionize your business with complete digital transformation. We automate workflows, optimize operations, and integrate the latest technologies for seamless efficiency and Google-ready processes.',
+    service_ai_integrations: 'AI & Machine Learning Solutions',
+    service_ai_integrations_desc: 'Implement AI-driven solutions that enhance efficiency, automation, and decision-making. From Google-powered chatbots to predictive analytics and machine learning algorithms, we embed cutting-edge AI into your business.',
+    service_admin_systems: 'Admin Systems & Management Tools',
+    service_admin_systems_desc: 'Control your platform with robust admin tools. We build user-friendly dashboards that simplify content management, analytics, and security with enterprise-grade performance.',
+    service_web_applications: 'Web Applications & Progressive Web Apps',
+    service_web_applications_desc: 'We craft modern, scalable web applications optimized for Google Search and Core Web Vitals. From SEO-friendly websites to complex progressive web apps, we deliver excellence that ranks higher.',
+    service_mobile_applications: 'Mobile Applications & Cross-Platform Solutions',
+    service_mobile_applications_desc: 'Create intuitive, high-performance mobile apps for iOS and Android platforms with Google Firebase integration that engage users and deliver seamless experiences across all devices.',
     service_cloud_solutions: 'Cloud Solutions',
-    service_cloud_solutions_desc: 'Leverage the power of cloud technologies for scalable, reliable, and cost-effective infrastructure solutions.',
-    
+    service_cloud_solutions_desc: 'Leverage the power of AWS or Google Cloud and other cloud technologies for scalable, reliable, and cost-effective infrastructure solutions that accelerate your business growth.',
+    service_seo_optimization: 'SEO & Search Engine Optimization',
+    service_seo_optimization_desc: 'Achieve top Google rankings with our comprehensive SEO solutions. We optimize your digital presence using advanced analytics, technical SEO expertise, and content strategies that drive organic traffic and conversions.',
+
     // Service features - Digitalisation
     feature_custom_workflow_automation: 'Custom workflow automation',
     feature_process_optimization: 'Process optimization',
     feature_integration_with_existing_systems: 'Integration with existing systems',
     feature_digital_document_management: 'Digital document management',
-    
+
     // Service features - AI Integrations
     feature_machine_learning_integration: 'Machine learning integration',
     feature_natural_language_processing: 'Natural language processing',
     feature_predictive_analytics: 'Predictive analytics',
     feature_computer_vision_solutions: 'Computer vision solutions',
-    
+
     // Service features - Admin Systems
     feature_custom_admin_dashboards: 'Custom admin dashboards',
     feature_user_management_systems: 'User management systems',
     feature_content_management: 'Content management',
     feature_analytics_and_reporting: 'Analytics and reporting',
-    
+
     // Service features - Web Applications
     feature_responsive_design: 'Responsive design',
     'feature_cross-browser_compatibility': 'Cross-browser compatibility',
     feature_progressive_web_apps: 'Progressive web apps',
     feature_api_development_and_integration: 'API development and integration',
-    
+
     // Service features - Mobile Applications
     feature_native_ios_development: 'Native iOS development',
     feature_native_android_development: 'Native Android development',
     'feature_cross-platform_solutions': 'Cross-platform solutions',
     feature_mobile_app_maintenance: 'Mobile app maintenance',
-    
+
     // Service features - Cloud Solutions
     feature_cloud_migration: 'Cloud migration',
     feature_infrastructure_as_code: 'Infrastructure as code',
     feature_serverless_architectures: 'Serverless architectures',
     feature_devops_automation: 'DevOps automation',
+
+    // Service features - SEO Optimization
+    feature_keyword_research: 'Advanced keyword research & analysis',
+    feature_technical_seo: 'Technical SEO & site optimization',
+    feature_content_strategy: 'Content strategy & optimization',
+    feature_local_seo: 'Local SEO & Google Business Profile optimization',
 
     // Admin section
     adminPanel: 'Admin Panel',
@@ -321,49 +329,51 @@ const translations = {
     servicesSubtitle: 'Soluții inovatoare pentru transformarea afacerii dvs.',
 
     // Service cards
-    service_digitalisation: 'Digitalizare',
-    service_digitalisation_desc: 'Revoluționați-vă afacerea prin transformare digitală. Automatizăm fluxurile de lucru, optimizăm operațiunile și integrăm cele mai noi tehnologii pentru eficiență perfectă.',
-    service_ai_integrations: 'Integrări AI',
-    service_ai_integrations_desc: 'Implementăm soluții bazate pe AI care îmbunătățesc eficiența, automatizarea și luarea deciziilor. De la chatboți la analize predictive, integrăm AI în afacerea dvs.',
-    service_admin_systems: 'Sisteme Administrative',
-    service_admin_systems_desc: 'Controlați-vă platforma cu instrumente administrative robuste. Construim tablouri de bord ușor de utilizat care simplifică gestionarea conținutului, analitica și securitatea.',
-    service_web_applications: 'Aplicații Web',
-    service_web_applications_desc: 'Creăm aplicații web moderne și scalabile adaptate nevoilor dumneavoastră. De la site-uri simple la platforme complexe, livrăm excelență.',
-    service_mobile_applications: 'Aplicații Mobile',
-    service_mobile_applications_desc: 'Creați aplicații mobile intuitive și de înaltă performanță pentru platformele iOS și Android care implică utilizatorii și oferă experiențe perfecte.',
+    service_digitalisation: 'Digitalizare & Transformare Digitală',
+    service_digitalisation_desc: 'Revoluționați-vă afacerea prin transformare digitală completă. Automatizăm fluxurile de lucru, optimizăm operațiunile și integrăm cele mai noi tehnologii pentru eficiență perfectă și procese compatibile cu Google.',
+    service_ai_integrations: 'Soluții AI & Machine Learning',
+    service_ai_integrations_desc: 'Implementăm soluții bazate pe AI care îmbunătățesc eficiența, automatizarea și luarea deciziilor. De la chatboți integrați cu Google la analize predictive și algoritmi de învățare automată, integrăm AI de ultimă generație în afacerea dvs.',
+    service_admin_systems: 'Sisteme Administrative & Instrumente de Management',
+    service_admin_systems_desc: 'Controlați-vă platforma cu instrumente administrative robuste. Construim tablouri de bord ușor de utilizat care simplifică gestionarea conținutului, analitica și securitatea cu performanță de nivel enterprise.',
+    service_web_applications: 'Aplicații Web & Aplicații Web Progresive',
+    service_web_applications_desc: 'Creăm aplicații web moderne și scalabile optimizate pentru Google Search și Core Web Vitals. De la site-uri optimizate pentru SEO până la aplicații web progresive complexe, livrăm excelență care se clasează mai sus în rezultatele căutării.',
+    service_mobile_applications: 'Aplicații Mobile & Soluții Cross-Platform',
+    service_mobile_applications_desc: 'Creați aplicații mobile intuitive și de înaltă performanță pentru platformele iOS și Android cu integrare Google Firebase care implică utilizatorii și oferă experiențe perfecte pe toate dispozitivele.',
     service_cloud_solutions: 'Soluții Cloud',
-    service_cloud_solutions_desc: 'Valorificați puterea tehnologiilor cloud pentru soluții de infrastructură scalabile, fiabile și rentabile.',
-    
+    service_cloud_solutions_desc: 'Valorificați puterea AWS sau Google Cloud și a altor tehnologii cloud pentru soluții de infrastructură scalabile, fiabile și rentabile care accelerează creșterea afacerii dvs.',
+    service_seo_optimization: 'SEO & Optimizare pentru Motoare de Căutare',
+    service_seo_optimization_desc: 'Obțineți poziții de top în Google cu soluțiile noastre comprehensive de SEO. Optimizăm prezența dvs. digitală folosind analize avansate, expertiză tehnică SEO și strategii de conținut care generează trafic organic și conversii.',
+
     // Service features - Digitalisation
     feature_custom_workflow_automation: 'Automatizare personalizată a fluxurilor de lucru',
     feature_process_optimization: 'Optimizarea proceselor',
     feature_integration_with_existing_systems: 'Integrare cu sistemele existente',
     feature_digital_document_management: 'Gestionarea documentelor digitale',
-    
+
     // Service features - AI Integrations
     feature_machine_learning_integration: 'Integrare machine learning',
     feature_natural_language_processing: 'Procesare de limbaj natural',
     feature_predictive_analytics: 'Analiză predictivă',
     feature_computer_vision_solutions: 'Soluții de computer vision',
-    
+
     // Service features - Admin Systems
     feature_custom_admin_dashboards: 'Tablouri de bord administrative personalizate',
     feature_user_management_systems: 'Sisteme de gestionare a utilizatorilor',
     feature_content_management: 'Gestionarea conținutului',
     feature_analytics_and_reporting: 'Analiză și raportare',
-    
+
     // Service features - Web Applications
     feature_responsive_design: 'Design responsive',
     'feature_cross-browser_compatibility': 'Compatibilitate cross-browser',
     feature_progressive_web_apps: 'Aplicații web progresive',
     feature_api_development_and_integration: 'Dezvoltare și integrare API',
-    
+
     // Service features - Mobile Applications
     feature_native_ios_development: 'Dezvoltare nativă iOS',
     feature_native_android_development: 'Dezvoltare nativă Android',
     'feature_cross-platform_solutions': 'Soluții cross-platform',
     feature_mobile_app_maintenance: 'Mentenanță aplicații mobile',
-    
+
     // Service features - Cloud Solutions
     feature_cloud_migration: 'Migrare în cloud',
     feature_infrastructure_as_code: 'Infrastructură ca și cod',
