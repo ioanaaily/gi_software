@@ -58,7 +58,7 @@ const translations = {
     homeTitle: 'Your Tech Partner for the Future',
     homeTagline: 'Innovative AI-Powered Solutions for Modern Business',
     homeDescription: 'We develop custom software solutions that leverage artificial intelligence, cloud computing, and data analytics to help businesses thrive in an increasingly digital world.',
-    homeHighlights: 'Our expertise spans machine learning, web applications, mobile development, and enterprise systems integration across Europe and the USA.',
+    homeHighlights: 'Our expertise spans machine learning, web applications, mobile development, and enterprise systems integration across Europe and USA.',
 
     // About page
     aboutUs: 'About Us',
@@ -76,7 +76,7 @@ const translations = {
     aiMl: 'Artificial Intelligence (AI) & Machine Learning (ML)',
     cloudTech: 'Cloud Technologies: AWS, Azure, Google Cloud',
     devOpsTools: 'Automation & DevOps Tools',
-    backendDev: 'Backend Development: Node.js, Python, Java',
+    backendDev: 'Backend Development: Node.js, Python, .Net',
     frontendDev: 'Frontend Development: React, Angular, Vue.js',
     databaseTech: 'Database Technologies: PostgreSQL, MongoDB, SQL',
     iotIntegration: 'IoT Integration',
@@ -253,7 +253,7 @@ const translations = {
     send: 'Trimite mesajul',
 
     // Home page
-    homeTitle: 'Partenerul dvs. tehnologic pentru viitor',
+    homeTitle: 'Partenerul tău tehnologic pentru viitor',
     homeTagline: 'Soluții inovatoare bazate pe Inteligență Artificială pentru afaceri moderne',
     homeDescription: 'Dezvoltăm soluții software personalizate care utilizează inteligența artificială, cloud computing și analiza datelor pentru a ajuta afacerile să prospere într-o lume din ce în ce mai digitală.',
     homeHighlights: 'Expertiza noastră acoperă domenii precum învățare automată, aplicații web, dezvoltare mobilă și integrare de sisteme de întreprindere în Europa și SUA.',
@@ -274,7 +274,7 @@ const translations = {
     aiMl: 'Inteligență Artificială (AI) și Machine Learning (ML)',
     cloudTech: 'Tehnologii Cloud: AWS, Azure, Google Cloud',
     devOpsTools: 'Automatizare și instrumente DevOps',
-    backendDev: 'Dezvoltare Backend: Node.js, Python, Java',
+    backendDev: 'Dezvoltare Backend: Node.js, Python, .Net',
     frontendDev: 'Dezvoltare Frontend: React, Angular, Vue.js',
     databaseTech: 'Tehnologii de baze de date: PostgreSQL, MongoDB, SQL',
     iotIntegration: 'Integrare IoT',

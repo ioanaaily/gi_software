@@ -36,7 +36,7 @@ function PrivacyPolicy() {
             <li><strong>{t('privacy_mobile_data', 'Mobile Device Data')}:</strong> {t('privacy_mobile_data_desc', 'Device information, such as your mobile device ID, model, and manufacturer, if you access the website from a mobile device.')}</li>
           </ul>
         </div>
-        
+
         <div className="terms-section">
           <h2 className="section-title">{t('privacy_section3', '3. Use of Your Information')}</h2>
           <p className="section-text">
@@ -55,7 +55,7 @@ function PrivacyPolicy() {
             <li>{t('privacy_use10', 'Respond to product and customer service requests')}</li>
           </ul>
         </div>
-        
+
         <div className="terms-section">
           <h2 className="section-title">{t('privacy_section4', '4. Disclosure of Your Information')}</h2>
           <p className="section-text">
@@ -68,21 +68,21 @@ function PrivacyPolicy() {
             <li><strong>{t('privacy_disclosure4_title', 'Business Transfers')}:</strong> {t('privacy_disclosure4_desc', 'We may share or transfer your information in connection with, or during negotiations of, any merger, sale of company assets, financing, or acquisition of all or a portion of our business to another company.')}</li>
           </ul>
         </div>
-        
+
         <div className="terms-section">
           <h2 className="section-title">{t('privacy_section5', '5. Security of Your Information')}</h2>
           <p className="section-text">
             {t('privacy_section5_text', 'We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable, and no method of data transmission can be guaranteed against any interception or other type of misuse.')}
           </p>
         </div>
-        
+
         <div className="terms-section">
           <h2 className="section-title">{t('privacy_section6', '6. Cookie Policy')}</h2>
           <p className="section-text">
             {t('privacy_section6_text', 'We use cookies and similar tracking technologies to track the activity on our website and hold certain information. Cookies are files with a small amount of data which may include an anonymous unique identifier. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent.')}
           </p>
         </div>
-        
+
         <div className="terms-section">
           <h2 className="section-title">{t('privacy_section7', '7. GDPR Rights')}</h2>
           <p className="section-text">
@@ -97,7 +97,7 @@ function PrivacyPolicy() {
             <li>{t('privacy_gdpr6', 'The right to withdraw consent')}</li>
           </ul>
         </div>
-        
+
         <div className="terms-section">
           <h2 className="section-title">{t('privacy_section8', '8. Contact Information')}</h2>
           <p className="section-text">
@@ -105,13 +105,13 @@ function PrivacyPolicy() {
           </p>
           <p className="section-text contact-info">
             {t('companyName')}<br />
-            {t('registrationNo', 'Registration No: RO12345678')}<br />
-            {t('companyAddress', 'Piața Victoriei 1, Bucharest, Romania')}<br />
-            {t('companyEmail', 'Email:')} privacy@gisoftware.com<br />
-            {t('companyPhone', 'Phone:')} +40 700 000 000
+            {t('registrationNo', 'Registration No: RO47861732')}<br />
+            {t('companyAddress', 'Cluj-Napoca, Romania')}<br />
+            {t('companyEmail', 'Email:')} igioana.ghita@gmail.com <br />
+            {t('companyPhone', 'Phone:')} +40 741 038 892
           </p>
         </div>
-        
+
         <div className="terms-date">
           {t('effectiveDate', 'Effective Date:')} {t('effectiveDateValue', 'January 1, 2025')}
         </div>
