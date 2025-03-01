@@ -115,7 +115,7 @@ const translations = {
     thankYou: 'Thank You',
 
     // Company specific
-    companyName: 'GI Software',
+    companyName: 'GI Software SRL',
     companyTagline: 'Innovative Solutions for Your Business',
 
     // Terms and Conditions Page
@@ -124,18 +124,18 @@ const translations = {
     lastUpdated: 'March 1, 2025',
     effectiveDate: 'Effective Date:',
     effectiveDateValue: 'January 1, 2025',
-    registrationNo: 'Registration No: RO12345678',
-    companyAddress: 'Piața Victoriei 1, Bucharest, Romania',
+    registrationNo: 'Registration No: RO47861732',
+    companyAddress: 'Cluj-Napoca, Romania',
     companyEmail: 'Email:',
     companyPhone: 'Phone:',
 
     // Terms Sections
     terms_section1: '1. Agreement to Terms',
-    terms_section1_text: 'By accessing or using GI Software\'s website, software, or services, you agree to be bound by these Terms and Conditions. If you disagree with any part of the terms, you may not access our services.',
+    terms_section1_text: 'By accessing or using GI Software SRL website, software, or services, you agree to be bound by these Terms and Conditions. If you disagree with any part of the terms, you may not access our services.',
     terms_section2: '2. Description of Services',
-    terms_section2_text: 'GI Software provides custom software development services including but not limited to AI integration, web applications, mobile development, and cloud solutions. Our services are subject to change without notice.',
+    terms_section2_text: 'GI Software SRL provides custom software development services including but not limited to AI integration, web applications, mobile development, and cloud solutions. Our services are subject to change without notice.',
     terms_section3: '3. Intellectual Property Rights',
-    terms_section3_text: 'All content, features, and functionality on our website and services, including but not limited to text, graphics, logos, icons, images, audio clips, and software, are owned by GI Software and are protected by international copyright, trademark, and other intellectual property laws.',
+    terms_section3_text: 'All content, features, and functionality on our website and services, including but not limited to text, graphics, logos, icons, images, audio clips, and software, are owned by GI Software SRL and are protected by international copyright, trademark, and other intellectual property laws.',
     terms_section4: '4. User Responsibilities',
     terms_section4_intro: 'When using our services, you agree to:',
     terms_responsibility1: 'Provide accurate and complete information',
@@ -144,7 +144,7 @@ const translations = {
     terms_responsibility4: 'Not interfere with or disrupt our services or servers',
     terms_responsibility5: 'Comply with all applicable laws and regulations',
     terms_section5: '5. Limitation of Liability',
-    terms_section5_text: 'In no event shall GI Software be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the services.',
+    terms_section5_text: 'In no event shall GI Software SRL be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the services.',
     terms_section6: '6. Governing Law',
     terms_section6_text: 'These Terms shall be governed and construed in accordance with the laws of Romania, without regard to its conflict of law provisions. Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights.',
     terms_section7: '7. Changes to Terms',
@@ -313,7 +313,7 @@ const translations = {
     thankYou: 'Mulțumim',
 
     // Company specific
-    companyName: 'GI Software',
+    companyName: 'GI Software SRL',
     companyTagline: 'Soluții Inovatoare pentru Afacerea Ta',
 
     // Terms and Conditions Page
@@ -322,18 +322,18 @@ const translations = {
     lastUpdated: '1 Martie 2025',
     effectiveDate: 'Data intrării în vigoare:',
     effectiveDateValue: '1 Ianuarie 2025',
-    registrationNo: 'Nr. Înregistrare: RO12345678',
-    companyAddress: 'Piața Victoriei 1, București, România',
+    registrationNo: 'Nr. Înregistrare: RO47861732',
+    companyAddress: 'Cluj-Napoca, România',
     companyEmail: 'Email:',
     companyPhone: 'Telefon:',
 
     // Terms Sections
     terms_section1: '1. Acceptarea Termenilor',
-    terms_section1_text: 'Prin accesarea sau utilizarea site-ului web, software-ului sau serviciilor GI Software, sunteți de acord să respectați acești Termeni și Condiții. Dacă nu sunteți de acord cu orice parte a termenilor, nu puteți accesa serviciile noastre.',
+    terms_section1_text: 'Prin accesarea sau utilizarea site-ului web, software-ului sau serviciilor GI Software SRL, sunteți de acord să respectați acești Termeni și Condiții. Dacă nu sunteți de acord cu orice parte a termenilor, nu puteți accesa serviciile noastre.',
     terms_section2: '2. Descrierea Serviciilor',
-    terms_section2_text: 'GI Software oferă servicii personalizate de dezvoltare software, inclusiv, dar fără a se limita la integrarea AI, aplicații web, dezvoltare mobilă și soluții cloud. Serviciile noastre pot fi modificate fără notificare prealabilă.',
+    terms_section2_text: 'GI Software SRL oferă servicii personalizate de dezvoltare software, inclusiv, dar fără a se limita la integrarea AI, aplicații web, dezvoltare mobilă și soluții cloud. Serviciile noastre pot fi modificate fără notificare prealabilă.',
     terms_section3: '3. Drepturi de Proprietate Intelectuală',
-    terms_section3_text: 'Tot conținutul, funcționalitățile și funcțiile de pe site-ul nostru web și serviciile noastre, inclusiv, dar fără a se limita la text, grafică, logo-uri, pictograme, imagini, clipuri audio și software, sunt deținute de GI Software și sunt protejate de legile internaționale privind drepturile de autor, mărcile comerciale și alte legi de proprietate intelectuală.',
+    terms_section3_text: 'Tot conținutul, funcționalitățile și funcțiile de pe site-ul nostru web și serviciile noastre, inclusiv, dar fără a se limita la text, grafică, logo-uri, pictograme, imagini, clipuri audio și software, sunt deținute de GI Software SRL și sunt protejate de legile internaționale privind drepturile de autor, mărcile comerciale și alte legi de proprietate intelectuală.',
     terms_section4: '4. Responsabilitățile Utilizatorului',
     terms_section4_intro: 'Când utilizați serviciile noastre, sunteți de acord să:',
     terms_responsibility1: 'Furnizați informații exacte și complete',
@@ -342,7 +342,7 @@ const translations = {
     terms_responsibility4: 'Nu interferați cu sau să întrerupeți serviciile sau serverele noastre',
     terms_responsibility5: 'Respectați toate legile și reglementările aplicabile',
     terms_section5: '5. Limitarea Răspunderii',
-    terms_section5_text: 'În niciun caz GI Software nu va fi răspunzător pentru daune indirecte, incidentale, speciale, consecutive sau punitive, inclusiv, fără limitare, pierderea de profit, date, utilizare, fond comercial sau alte pierderi intangibile, rezultate din accesul sau utilizarea sau incapacitatea de a accesa sau utiliza serviciile.',
+    terms_section5_text: 'În niciun caz GI Software SRL nu va fi răspunzător pentru daune indirecte, incidentale, speciale, consecutive sau punitive, inclusiv, fără limitare, pierderea de profit, date, utilizare, fond comercial sau alte pierderi intangibile, rezultate din accesul sau utilizarea sau incapacitatea de a accesa sau utiliza serviciile.',
     terms_section6: '6. Legislația Aplicabilă',
     terms_section6_text: 'Acești Termeni vor fi guvernați și interpretați în conformitate cu legile din România, fără a ține cont de dispozițiile sale privind conflictul de legi. Neaplicarea din partea noastră a oricărui drept sau prevedere a acestor Termeni nu va fi considerată o renunțare la aceste drepturi.',
     terms_section7: '7. Modificări ale Termenilor',

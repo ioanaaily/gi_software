@@ -17,21 +17,21 @@ function TermsAndConditions() {
         <div className="terms-section">
           <h2 className="section-title">{t('terms_section1', '1. Agreement to Terms')}</h2>
           <p className="section-text">
-            {t('terms_section1_text', 'By accessing or using GI Software\'s website, software, or services, you agree to be bound by these Terms and Conditions. If you disagree with any part of the terms, you may not access our services.')}
+            {t('terms_section1_text', 'By accessing or using GI Software SRL website, software, or services, you agree to be bound by these Terms and Conditions. If you disagree with any part of the terms, you may not access our services.')}
           </p>
         </div>
 
         <div className="terms-section">
           <h2 className="section-title">{t('terms_section2', '2. Description of Services')}</h2>
           <p className="section-text">
-            {t('terms_section2_text', 'GI Software provides custom software development services including but not limited to AI integration, web applications, mobile development, and cloud solutions. Our services are subject to change without notice.')}
+            {t('terms_section2_text', 'GI Software SRL provides custom software development services including but not limited to AI integration, web applications, mobile development, and cloud solutions. Our services are subject to change without notice.')}
           </p>
         </div>
 
         <div className="terms-section">
           <h2 className="section-title">{t('terms_section3', '3. Intellectual Property Rights')}</h2>
           <p className="section-text">
-            {t('terms_section3_text', 'All content, features, and functionality on our website and services, including but not limited to text, graphics, logos, icons, images, audio clips, and software, are owned by GI Software and are protected by international copyright, trademark, and other intellectual property laws.')}
+            {t('terms_section3_text', 'All content, features, and functionality on our website and services, including but not limited to text, graphics, logos, icons, images, audio clips, and software, are owned by GI Software SRL and are protected by international copyright, trademark, and other intellectual property laws.')}
           </p>
         </div>
 
@@ -52,7 +52,7 @@ function TermsAndConditions() {
         <div className="terms-section">
           <h2 className="section-title">{t('terms_section5', '5. Limitation of Liability')}</h2>
           <p className="section-text">
-            {t('terms_section5_text', 'In no event shall GI Software be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the services.')}
+            {t('terms_section5_text', 'In no event shall GI Software SRL be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the services.')}
           </p>
         </div>
 

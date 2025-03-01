@@ -6,21 +6,21 @@ import "../styles/footer.css";
 function Footer() {
   const currentYear = new Date().getFullYear();
   const { t } = useTranslation();
-  
+
   return (
     <footer className="footer">
       <div className="footer-content">
         <div className="footer-section company-info">
-          <h3 className="footer-title">GI Software</h3>
+          <h3 className="footer-title">GI Software SRL</h3>
           <p className="footer-text">
             Innovative software solutions for businesses of all sizes.
           </p>
           <div className="company-details">
-            <p>Registration No: RO12345678</p>
-            <p>Address: Piața Victoriei 1, Bucharest, Romania</p>
+            <p>Registration No: RO47861732</p>
+            <p>Address: Cluj-Napoca, Romania</p>
           </div>
         </div>
-        
+
         <div className="footer-section">
           <h3 className="footer-title">{t('quickLinks', 'Quick Links')}</h3>
           <ul className="footer-links">
@@ -30,7 +30,7 @@ function Footer() {
             <li><Link to="/contact">{t('contact')}</Link></li>
           </ul>
         </div>
-        
+
         <div className="footer-section">
           <h3 className="footer-title">{t('legal', 'Legal')}</h3>
           <ul className="footer-links">
@@ -41,11 +41,11 @@ function Footer() {
           </ul>
         </div>
       </div>
-      
+
       <div className="footer-bottom">
         <p>© {currentYear} GI Software SRL. {t('allRightsReserved')}</p>
         <p className="footer-legal-text">
-          {t('byUsingWebsite', 'By using this website, you accept our')} <Link to="/terms-and-conditions">{t('termsOfService')}</Link> {t('and')} 
+          {t('byUsingWebsite', 'By using this website, you accept our')} <Link to="/terms-and-conditions">{t('termsOfService')}</Link> {t('and')}
           <Link to="/privacy-policy"> {t('privacyPolicy')}</Link>.
         </p>
       </div>
