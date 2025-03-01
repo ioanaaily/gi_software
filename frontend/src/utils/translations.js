@@ -99,6 +99,42 @@ const translations = {
     service_mobile_applications_desc: 'Create intuitive, high-performance mobile apps for iOS and Android platforms that engage users and deliver seamless experiences.',
     service_cloud_solutions: 'Cloud Solutions',
     service_cloud_solutions_desc: 'Leverage the power of cloud technologies for scalable, reliable, and cost-effective infrastructure solutions.',
+    
+    // Service features - Digitalisation
+    feature_custom_workflow_automation: 'Custom workflow automation',
+    feature_process_optimization: 'Process optimization',
+    feature_integration_with_existing_systems: 'Integration with existing systems',
+    feature_digital_document_management: 'Digital document management',
+    
+    // Service features - AI Integrations
+    feature_machine_learning_integration: 'Machine learning integration',
+    feature_natural_language_processing: 'Natural language processing',
+    feature_predictive_analytics: 'Predictive analytics',
+    feature_computer_vision_solutions: 'Computer vision solutions',
+    
+    // Service features - Admin Systems
+    feature_custom_admin_dashboards: 'Custom admin dashboards',
+    feature_user_management_systems: 'User management systems',
+    feature_content_management: 'Content management',
+    feature_analytics_and_reporting: 'Analytics and reporting',
+    
+    // Service features - Web Applications
+    feature_responsive_design: 'Responsive design',
+    'feature_cross-browser_compatibility': 'Cross-browser compatibility',
+    feature_progressive_web_apps: 'Progressive web apps',
+    feature_api_development_and_integration: 'API development and integration',
+    
+    // Service features - Mobile Applications
+    feature_native_ios_development: 'Native iOS development',
+    feature_native_android_development: 'Native Android development',
+    'feature_cross-platform_solutions': 'Cross-platform solutions',
+    feature_mobile_app_maintenance: 'Mobile app maintenance',
+    
+    // Service features - Cloud Solutions
+    feature_cloud_migration: 'Cloud migration',
+    feature_infrastructure_as_code: 'Infrastructure as code',
+    feature_serverless_architectures: 'Serverless architectures',
+    feature_devops_automation: 'DevOps automation',
 
     // Admin section
     adminPanel: 'Admin Panel',
@@ -297,6 +333,42 @@ const translations = {
     service_mobile_applications_desc: 'Creați aplicații mobile intuitive și de înaltă performanță pentru platformele iOS și Android care implică utilizatorii și oferă experiențe perfecte.',
     service_cloud_solutions: 'Soluții Cloud',
     service_cloud_solutions_desc: 'Valorificați puterea tehnologiilor cloud pentru soluții de infrastructură scalabile, fiabile și rentabile.',
+    
+    // Service features - Digitalisation
+    feature_custom_workflow_automation: 'Automatizare personalizată a fluxurilor de lucru',
+    feature_process_optimization: 'Optimizarea proceselor',
+    feature_integration_with_existing_systems: 'Integrare cu sistemele existente',
+    feature_digital_document_management: 'Gestionarea documentelor digitale',
+    
+    // Service features - AI Integrations
+    feature_machine_learning_integration: 'Integrare machine learning',
+    feature_natural_language_processing: 'Procesare de limbaj natural',
+    feature_predictive_analytics: 'Analiză predictivă',
+    feature_computer_vision_solutions: 'Soluții de computer vision',
+    
+    // Service features - Admin Systems
+    feature_custom_admin_dashboards: 'Tablouri de bord administrative personalizate',
+    feature_user_management_systems: 'Sisteme de gestionare a utilizatorilor',
+    feature_content_management: 'Gestionarea conținutului',
+    feature_analytics_and_reporting: 'Analiză și raportare',
+    
+    // Service features - Web Applications
+    feature_responsive_design: 'Design responsive',
+    'feature_cross-browser_compatibility': 'Compatibilitate cross-browser',
+    feature_progressive_web_apps: 'Aplicații web progresive',
+    feature_api_development_and_integration: 'Dezvoltare și integrare API',
+    
+    // Service features - Mobile Applications
+    feature_native_ios_development: 'Dezvoltare nativă iOS',
+    feature_native_android_development: 'Dezvoltare nativă Android',
+    'feature_cross-platform_solutions': 'Soluții cross-platform',
+    feature_mobile_app_maintenance: 'Mentenanță aplicații mobile',
+    
+    // Service features - Cloud Solutions
+    feature_cloud_migration: 'Migrare în cloud',
+    feature_infrastructure_as_code: 'Infrastructură ca și cod',
+    feature_serverless_architectures: 'Arhitecturi serverless',
+    feature_devops_automation: 'Automatizare DevOps',
 
     // Admin section
     adminPanel: 'Panou de administrare',
