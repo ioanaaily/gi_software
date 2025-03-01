@@ -4,6 +4,7 @@ from api.contact import router as contact_router
 from api.auth import router as auth_router
 from api.news import router as news_router
 from api.test import router as test_router
+from api.translations import router as translations_router
 
 app = FastAPI()
 
@@ -45,6 +46,7 @@ app.include_router(contact_router, prefix="/api/contact", tags=["Contact"])
 app.include_router(auth_router, prefix="/api/auth", tags=["Authentication"])
 app.include_router(news_router, prefix="/api/news", tags=["News"])
 app.include_router(test_router, prefix="/api/test", tags=["Test"])
+app.include_router(translations_router, prefix="/api/translations", tags=["Translations"])
 
 @app.get("/")
 async def root():

@@ -1,97 +1,194 @@
-/* Navbar Styles */
+/* Navbar Styles - 2025 Theme */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 70px; /* Reduced height */
+  height: 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
-  background-color: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  padding: 0 2.5rem;
+  background-color: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    0 4px 20px rgba(2, 6, 23, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
   z-index: 1000;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.navbar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    rgba(139, 92, 246, 0),
+    rgba(139, 92, 246, 0.5),
+    rgba(14, 165, 233, 0.5),
+    rgba(14, 165, 233, 0));
+  opacity: 0.6;
 }
 
 .navbar.scrolled {
-  background-color: rgba(0, 0, 0, 0.9);
-  box-shadow: 0 4px 20px rgba(255, 204, 0, 0.3);
+  background-color: rgba(15, 23, 42, 0.85);
+  box-shadow:
+    0 8px 30px rgba(2, 6, 23, 0.4),
+    0 0 0 1px rgba(139, 92, 246, 0.1) inset;
 }
 
 .navbar-logo {
   display: flex;
   align-items: center;
   gap: 1rem;
+  position: relative;
 }
 
 .logo-image {
-  width: 48px;
-  height: 48px;
-  animation: pulse 2s infinite;
+  width: 42px;
+  height: 42px;
+  filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.5));
+  animation: logoGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes logoGlow {
+  0% {
+    filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.5));
+    transform: scale(1);
+  }
+  100% {
+    filter: drop-shadow(0 0 12px rgba(14, 165, 233, 0.7));
+    transform: scale(1.05);
+  }
 }
 
 .logo-text {
   font-size: 1.5rem;
-  font-weight: 800;
-  letter-spacing: 2px;
-  color: #ffcc00;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  background: linear-gradient(90deg, #c4b5fd, #7dd3fc); /* Lighter purple to lighter blue */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   text-decoration: none;
-  text-transform: uppercase;
-  text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+  position: relative;
+}
+
+.logo-text::after {
+  content: '';
+  position: absolute;
+  top: -0.8rem;
+  right: -1rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgba(139, 92, 246, 0.7);
 }
 
 .navbar-links {
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .nav-link {
   position: relative;
-  color: #ffcc00;
-  font-weight: 600;
-  text-transform: uppercase;
+  color: #CBD5E1;
+  font-weight: 500;
   text-decoration: none;
-  letter-spacing: 1px;
-  transition: color 0.3s ease;
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
   padding: 0.5rem 0;
+  font-size: 0.95rem;
 }
 
-.nav-link:after {
+.nav-link::before {
   content: '';
   position: absolute;
   width: 0;
-  height: 2px;
+  height: 1px;
   bottom: 0;
-  left: 0;
-  background-color: #ffcc00;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, #8B5CF6, #0EA5E9);
   transition: width 0.3s ease;
+  opacity: 0;
 }
 
 .nav-link:hover {
-  color: #ffffff;
+  color: #F8FAFC;
+  transform: translateY(-2px);
 }
 
-.nav-link:hover:after,
-.nav-link.active:after {
+.nav-link:hover::before {
   width: 100%;
+  opacity: 1;
 }
 
 .nav-link.active {
-  color: #ffffff;
+  color: #F8FAFC;
+  font-weight: 600;
 }
 
-@keyframes pulse {
-  0% {
-    opacity: 0.7;
+.nav-link.active::before {
+  width: 100%;
+  opacity: 1;
+  height: 2px;
+}
+
+/* Glass highlight effect */
+.navbar::after {
+  content: '';
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.08), transparent 70%);
+  top: -75px;
+  right: 10%;
+  border-radius: 50%;
+  filter: blur(30px);
+  opacity: 0.5;
+  z-index: -1;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 1.5rem;
   }
-  50% {
-    opacity: 1;
+
+  .navbar-links {
+    gap: 1.5rem;
   }
-  100% {
-    opacity: 0.7;
+
+  .logo-text {
+    font-size: 1.3rem;
+  }
+
+  .logo-text::after {
+    top: -0.6rem;
+    right: -0.8rem;
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-links {
+    gap: 1rem;
+  }
+
+  .nav-link {
+    font-size: 0.85rem;
+  }
+
+  .logo-image {
+    width: 36px;
+    height: 36px;
+  }
+
+  .logo-text {
+    font-size: 1.1rem;
   }
 }

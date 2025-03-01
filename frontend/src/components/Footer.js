@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "../context/TranslationProvider";
 import "../styles/footer.css";
 
 function Footer() {
   const currentYear = new Date().getFullYear();
+  const { t } = useTranslation();
   
   return (
     <footer className="footer">
@@ -20,31 +22,31 @@ function Footer() {
         </div>
         
         <div className="footer-section">
-          <h3 className="footer-title">Quick Links</h3>
+          <h3 className="footer-title">{t('quickLinks', 'Quick Links')}</h3>
           <ul className="footer-links">
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About</Link></li>
-            <li><Link to="/services">Services</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
+            <li><Link to="/">{t('home')}</Link></li>
+            <li><Link to="/about">{t('about')}</Link></li>
+            <li><Link to="/services">{t('services')}</Link></li>
+            <li><Link to="/contact">{t('contact')}</Link></li>
           </ul>
         </div>
         
         <div className="footer-section">
-          <h3 className="footer-title">Legal</h3>
+          <h3 className="footer-title">{t('legal', 'Legal')}</h3>
           <ul className="footer-links">
-            <li><Link to="/terms-and-conditions">Terms & Conditions</Link></li>
-            <li><Link to="/privacy-policy">Privacy Policy</Link></li>
-            <li><Link to="/gdpr">GDPR Compliance</Link></li>
-            <li><Link to="/cookie-policy">Cookie Policy</Link></li>
+            <li><Link to="/terms-and-conditions">{t('termsOfService')}</Link></li>
+            <li><Link to="/privacy-policy">{t('privacyPolicy')}</Link></li>
+            <li><Link to="/gdpr">{t('gdprCompliance', 'GDPR Compliance')}</Link></li>
+            <li><Link to="/cookie-policy">{t('cookiePolicy', 'Cookie Policy')}</Link></li>
           </ul>
         </div>
       </div>
       
       <div className="footer-bottom">
-        <p>© {currentYear} GI Software SRL. All rights reserved.</p>
+        <p>© {currentYear} GI Software SRL. {t('allRightsReserved')}</p>
         <p className="footer-legal-text">
-          By using this website, you accept our <Link to="/terms-and-conditions">Terms of Use</Link> and 
-          <Link to="/privacy-policy"> Privacy Policy</Link>.
+          {t('byUsingWebsite', 'By using this website, you accept our')} <Link to="/terms-and-conditions">{t('termsOfService')}</Link> {t('and')} 
+          <Link to="/privacy-policy"> {t('privacyPolicy')}</Link>.
         </p>
       </div>
     </footer>

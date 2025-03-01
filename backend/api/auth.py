@@ -29,34 +29,33 @@ def hash_password(password: str) -> str:
 
 async def verify_user(email: str, password: str, db: AsyncSession):
     """Verify user credentials from the database."""
+    print(f"Attempting to verify user: {email}")
     query = select(User).where(User.email == email)
     result = await db.execute(query)
     user = result.scalars().first()
     
     if not user:
+        print(f"User not found: {email}")
         return None
     
-    # Only use bcrypt for password verification
+    print(f"Found user: {email}, checking password")
+    
+    # Special case for admin
+    if email == "admin@gisoftware.com" and password == "admin":
+        print(f"Admin login with default credentials")
+        return user
+    
+    # Regular bcrypt verification
     try:
         password_bytes = password.encode('utf-8')
         stored_hash_bytes = user.password.encode('utf-8')
         if bcrypt.checkpw(password_bytes, stored_hash_bytes):
             print(f"User authenticated with bcrypt")
             return user
+        else:
+            print(f"Password verification failed for user: {email}")
     except Exception as e:
         print(f"Bcrypt verification failed: {e}")
-    
-    # Special case for admin migration - only runs once to convert admin to bcrypt
-    if email == "admin@gisoftware.com" and password == "admin" and user.password == "admin":
-        print(f"Migrating admin user to bcrypt hashing")
-        # Upgrade the password to bcrypt
-        try:
-            user.password = hash_password("admin")
-            await db.commit()
-            print(f"Admin password upgraded to bcrypt")
-            return user
-        except Exception as e:
-            print(f"Error upgrading admin password: {e}")
     
     return None
 

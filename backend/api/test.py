@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Header, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from sqlalchemy import desc
@@ -13,6 +13,25 @@ from database import get_db
 from models import NewsArticle, User
 
 router = APIRouter()
+
+@router.get("/")
+async def test(language: Optional[str] = Query(None), accept_language: Optional[str] = Header(None)):
+    """
+    Simple test endpoint to verify API is working with translation support.
+    
+    Returns a message in the requested language.
+    """
+    # Import translation
+    from translation import get_preferred_language
+    
+    # Get language preference
+    preferred_lang = get_preferred_language(accept_language, language)
+    
+    # Return message in the preferred language
+    if preferred_lang == "ro":
+        return {"message": "Endpoint-ul de test API funcționează", "language": "ro"}
+    else:
+        return {"message": "API test endpoint is working", "language": "en"}
 
 @router.get("/articles", response_model=List[dict])
 async def test_get_articles(db: AsyncSession = Depends(get_db)):

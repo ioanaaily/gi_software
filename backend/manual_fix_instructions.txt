@@ -1,0 +1,69 @@
+# Manual Admin Login Fix Instructions
+
+Since the automated script didn't work, here are manual steps to fix the Admin login:
+
+## 1. Backend is Working Correctly
+
+The backend API is working correctly as confirmed by our tests:
+- Endpoint: http://localhost:8000/api/auth/login
+- Method: POST with JSON body
+- Data format: {"email": "admin@gisoftware.com", "password": "admin"}
+
+## 2. Edit the Frontend Admin.js File
+
+You need to manually edit the Admin.js file in your frontend code:
+
+1. Locate the Admin.js file (likely at ../frontend/src/pages/Admin.js)
+
+2. Find the login function (handleLogin or similar) 
+
+3. Change the login URL to: `http://localhost:8000/api/auth/login`
+
+4. Make sure the function is sending data as JSON:
+   ```javascript
+   const response = await axios.post(
+     "http://localhost:8000/api/auth/login",
+     { email, password },
+     {
+       headers: {
+         "Content-Type": "application/json",
+       },
+     }
+   );
+   ```
+
+5. Ensure proper error handling:
+   ```javascript
+   try {
+     // API call here
+   } catch (err) {
+     console.error("Login error:", err);
+     if (err.response) {
+       setError(`Authentication failed: ${err.response.status} ${JSON.stringify(err.response.data)}`);
+     } else if (err.request) {
+       setError("No response from server. Check if backend is running.");
+     } else {
+       setError(`Error: ${err.message}`);
+     }
+   }
+   ```
+
+## 3. Start Both Backend and Frontend
+
+1. Start the backend:
+   ```
+   uvicorn main:app --reload
+   ```
+
+2. In a different terminal, start the frontend:
+   ```
+   cd ../frontend
+   npm start
+   ```
+
+3. Access the admin page directly at:
+   http://localhost:3000/admin
+
+4. Log in with:
+   - Email: admin@gisoftware.com
+   - Password: admin

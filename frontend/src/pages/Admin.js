@@ -45,6 +45,7 @@ function Admin() {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoginError("");
+    setLoading(true);
     
     console.log("Login attempt with:", loginForm.email);
     
@@ -56,7 +57,7 @@ function Admin() {
       console.log("Attempting authentication with server");
       const response = await axios({
         method: 'post',
-        url: `${config.api.baseURL}/auth/login`,
+        url: `${config.api.baseURL}/api/auth/login`,
         data: {
           email: loginForm.email,
           password: loginForm.password
@@ -86,6 +87,8 @@ function Admin() {
         console.error("Login setup error:", err.message);
         setLoginError(`Login failed: ${err.message}`);
       }
+    } finally {
+      setLoading(false);
     }
   };
   
@@ -275,12 +278,14 @@ function Admin() {
     return (
       <div className="admin-container">
         <div className="admin-header">
-          <h1 className="admin-title">Admin Login</h1>
-          <p className="admin-subtitle">Please log in to access the admin panel</p>
+          <div className="admin-title-group">
+            <h1 className="admin-title">Admin Login</h1>
+            <p className="admin-subtitle">Please log in to access the admin panel</p>
+          </div>
         </div>
         
-        <div className="admin-content login-content">
-          <div className="admin-form">
+        <div className="login-content">
+          <form className="admin-form" onSubmit={(e) => { e.preventDefault(); handleLogin(e); }}>
             {loginError && (
               <div className="login-error">
                 {loginError}
@@ -296,6 +301,7 @@ function Admin() {
                 onChange={handleLoginChange} 
                 className="admin-form-input" 
                 placeholder="admin@gisoftware.com"
+                required
               />
             </div>
             
@@ -307,20 +313,25 @@ function Admin() {
                 value={loginForm.password} 
                 onChange={handleLoginChange} 
                 className="admin-form-input" 
-                placeholder="admin"
+                placeholder="Enter your password"
+                required
               />
             </div>
             
-            <div style={{ textAlign: 'center', marginTop: '20px' }}>
+            <div className="admin-form-buttons" style={{ justifyContent: 'center' }}>
               <button 
-                type="button" 
+                type="submit" 
                 className="admin-form-button"
-                onClick={handleLogin}
+                disabled={loading}
               >
-                Login
+                {loading ? "Logging in..." : "Login"}
               </button>
             </div>
-          </div>
+            
+            <div className="demo-login-info">
+              Demo credentials: admin@gisoftware.com / admin
+            </div>
+          </form>
         </div>
       </div>
     );
@@ -330,7 +341,10 @@ function Admin() {
   return (
     <div className="admin-container">
       <div className="admin-header">
-        <h1 className="admin-title">Admin Panel</h1>
+        <div className="admin-title-group">
+          <h1 className="admin-title">Admin Panel</h1>
+          <p className="admin-subtitle">Manage your website content</p>
+        </div>
         <button onClick={handleLogout} className="admin-logout-button">Logout</button>
       </div>
       

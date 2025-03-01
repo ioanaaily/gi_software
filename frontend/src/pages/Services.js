@@ -1,13 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "../context/TranslationProvider";
 import "../styles/services.css";
 
 function Services() {
+  const { t } = useTranslation();
+  
   return (
     <div className="services-container">
       <div className="services-header">
-        <h1 className="services-title">Our Services</h1>
-        <p className="services-subtitle">Innovative solutions to transform your business</p>
+        <h1 className="services-title">{t('ourServices')}</h1>
+        <p className="services-subtitle">{t('servicesSubtitle', 'Innovative solutions to transform your business')}</p>
       </div>
       
       <div className="services-grid">
@@ -87,22 +90,26 @@ function Services() {
   );
 }
 
-const ServiceCard = ({ title, description, features, link }) => (
-  <div className="service-card">
-    <div className="service-icon">💡</div>
-    <h2 className="service-name">{title}</h2>
-    <p className="service-description">{description}</p>
-    
-    <ul className="service-features">
-      {features.map((feature, index) => (
-        <li key={index}>{feature}</li>
-      ))}
-    </ul>
-    
-    <div className="service-cta">
-      <Link to={link} className="service-button">Learn More</Link>
+const ServiceCard = ({ title, description, features, link }) => {
+  const { t } = useTranslation();
+  
+  return (
+    <div className="service-card">
+      <div className="service-icon">💡</div>
+      <h2 className="service-name">{t(`service_${title.toLowerCase().replace(/\s+/g, '_')}`, title)}</h2>
+      <p className="service-description">{t(`service_${title.toLowerCase().replace(/\s+/g, '_')}_desc`, description)}</p>
+      
+      <ul className="service-features">
+        {features.map((feature, index) => (
+          <li key={index}>{t(`feature_${feature.toLowerCase().replace(/\s+/g, '_')}`, feature)}</li>
+        ))}
+      </ul>
+      
+      <div className="service-cta">
+        <Link to={link} className="service-button">{t('learnMore', 'Learn More')}</Link>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Services;

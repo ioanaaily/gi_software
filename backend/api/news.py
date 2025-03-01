@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Query, Header
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from sqlalchemy import desc, func
@@ -153,6 +153,8 @@ async def get_news_articles(
     page: int = 1,
     size: int = 6,
     category: Optional[str] = None,
+    language: Optional[str] = Query(None),
+    accept_language: Optional[str] = Header(None),
     db: AsyncSession = Depends(get_db)
 ):
     """
@@ -161,7 +163,11 @@ async def get_news_articles(
     - page: Page number (starting from 1)
     - size: Number of items per page (max 6)
     - category: Optional category filter
+    - language: Optional language code (en/ro)
     """
+    # Import translation functions
+    from translation import get_preferred_language, translate_dict
+    
     # Enforce max page size of 6
     if size > 6:
         size = 6
@@ -188,20 +194,57 @@ async def get_news_articles(
     # Calculate total pages
     pages = (total + size - 1) // size  # Ceiling division
     
-    return {
+    # Get language preference
+    preferred_lang = get_preferred_language(accept_language, language)
+    
+    # Prepare response
+    response = {
         "items": articles,
         "total": total,
         "page": page,
         "size": size,
         "pages": pages
     }
+    
+    # Translate if Romanian is requested
+    if preferred_lang == "ro":
+        translated_items = []
+        for article in response["items"]:
+            article_dict = {
+                "id": article.id,
+                "title": article.title,
+                "slug": article.slug,
+                "excerpt": article.excerpt,
+                "content": article.content,
+                "image_url": article.image_url,
+                "category": article.category,
+                "published": article.published,
+                "published_date": article.published_date,
+                "created_at": article.created_at,
+                "updated_at": article.updated_at,
+                "author_id": article.author_id
+            }
+            translated_items.append(translate_dict(article_dict, "ro"))
+        response["items"] = translated_items
+        
+    return response
 
 @router.get("/{article_id}", response_model=NewsArticleResponse)
 async def get_news_article(
     article_id: int,
+    language: Optional[str] = Query(None),
+    accept_language: Optional[str] = Header(None),
     db: AsyncSession = Depends(get_db)
 ):
-    """Get a specific news article by ID."""
+    """
+    Get a specific news article by ID.
+    
+    - article_id: ID of the article to retrieve
+    - language: Optional language code (en/ro)
+    """
+    # Import translation functions
+    from translation import get_preferred_language, translate_dict
+    
     result = await db.execute(select(NewsArticle).where(NewsArticle.id == article_id))
     article = result.scalars().first()
     
@@ -211,14 +254,54 @@ async def get_news_article(
             detail="Article not found"
         )
     
+    # Get language preference
+    preferred_lang = get_preferred_language(accept_language, language)
+    
+    # Return article as is for English
+    if preferred_lang == "en":
+        return article
+    
+    # For Romanian, translate the article
+    article_dict = {
+        "id": article.id,
+        "title": article.title,
+        "slug": article.slug,
+        "excerpt": article.excerpt,
+        "content": article.content,
+        "image_url": article.image_url,
+        "category": article.category,
+        "published": article.published,
+        "published_date": article.published_date,
+        "created_at": article.created_at,
+        "updated_at": article.updated_at,
+        "author_id": article.author_id
+    }
+    
+    translated = translate_dict(article_dict, "ro")
+    
+    # Create a new article object with translated values
+    for key, value in translated.items():
+        if hasattr(article, key):
+            setattr(article, key, value)
+    
     return article
 
 @router.get("/slug/{slug}", response_model=NewsArticleResponse)
 async def get_news_article_by_slug(
     slug: str,
+    language: Optional[str] = Query(None),
+    accept_language: Optional[str] = Header(None),
     db: AsyncSession = Depends(get_db)
 ):
-    """Get a specific news article by slug."""
+    """
+    Get a specific news article by slug.
+    
+    - slug: URL-friendly slug of the article
+    - language: Optional language code (en/ro)
+    """
+    # Import translation functions
+    from translation import get_preferred_language, translate_dict
+    
     result = await db.execute(select(NewsArticle).where(NewsArticle.slug == slug))
     article = result.scalars().first()
     
@@ -227,6 +310,36 @@ async def get_news_article_by_slug(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Article not found"
         )
+    
+    # Get language preference
+    preferred_lang = get_preferred_language(accept_language, language)
+    
+    # Return article as is for English
+    if preferred_lang == "en":
+        return article
+    
+    # For Romanian, translate the article
+    article_dict = {
+        "id": article.id,
+        "title": article.title,
+        "slug": article.slug,
+        "excerpt": article.excerpt,
+        "content": article.content,
+        "image_url": article.image_url,
+        "category": article.category,
+        "published": article.published,
+        "published_date": article.published_date,
+        "created_at": article.created_at,
+        "updated_at": article.updated_at,
+        "author_id": article.author_id
+    }
+    
+    translated = translate_dict(article_dict, "ro")
+    
+    # Create a new article object with translated values
+    for key, value in translated.items():
+        if hasattr(article, key):
+            setattr(article, key, value)
     
     return article
 
