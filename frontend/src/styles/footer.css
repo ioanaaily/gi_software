@@ -1,0 +1,161 @@
+@import "./global.css";
+
+/* Footer Styles */
+.footer {
+  background-color: rgba(0, 0, 0, 0.9);
+  border-top: 1px solid rgba(255, 204, 0, 0.3);
+  padding: 0.8rem 0 0.5rem;
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.7);
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.footer-section {
+  min-width: 250px;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+}
+
+.footer-title {
+  font-size: 1rem;
+  color: #ffcc00;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.footer-text {
+  color: #bbbbbb;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.company-details {
+  font-size: 0.7rem;
+  color: #999999;
+  line-height: 1.4;
+}
+
+.company-details p {
+  margin: 0.2rem 0;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.3rem;
+}
+
+.footer-links a {
+  color: #dddddd;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: inline-block;
+  font-size: 0.8rem;
+}
+
+.footer-links a:hover {
+  color: #ffcc00;
+}
+
+.footer-bottom {
+  text-align: center;
+  width: 100%;
+  padding-top: 0.7rem;
+  margin-top: 0.7rem;
+  color: #999999;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.7rem;
+}
+
+.footer-bottom p {
+  margin: 0.2rem 0;
+}
+
+.footer-legal-text {
+  color: #777777;
+}
+
+.footer-legal-text a {
+  color: #ffcc00;
+  text-decoration: none;
+  transition: text-decoration 0.3s ease;
+}
+
+.footer-legal-text a:hover {
+  text-decoration: underline;
+}
+
+/* Home page adjustments */
+.page-home .footer {
+  height: 40px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.page-home .footer-content,
+.page-home .footer-bottom {
+  display: none;
+}
+
+.page-home .footer:after {
+  content: "© 2025 GI Software SRL. All rights reserved.";
+  color: #999999;
+  font-size: 0.7rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 1rem;
+  }
+  
+  .footer-section {
+    margin-bottom: 1rem;
+    min-width: unset;
+    width: 100%;
+  }
+  
+  .footer-links li {
+    display: inline-block;
+    margin: 0 0.5rem 0.3rem 0;
+  }
+}
+
+@media (max-height: 700px) {
+  .footer {
+    padding: 0.5rem 0 0.3rem;
+  }
+  
+  .footer-content {
+    display: none;
+  }
+  
+  .footer-bottom {
+    padding-top: 0;
+    margin-top: 0;
+    border-top: none;
+  }
+}

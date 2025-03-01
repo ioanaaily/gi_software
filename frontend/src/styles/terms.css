@@ -1,0 +1,117 @@
+@import "./global.css";
+
+/* Terms and Conditions Page Specific Styles */
+.terms-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  min-height: calc(100vh - 80px); /* Adjust for navbar height */
+}
+
+.terms-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.terms-title {
+  font-size: 3rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-shadow: 0px 4px 15px rgba(255, 204, 0, 0.8);
+  color: #ffcc00;
+  letter-spacing: 1.5px;
+  margin-bottom: 1rem;
+}
+
+.terms-subtitle {
+  font-size: 1.5rem;
+  color: #dddddd;
+}
+
+.terms-content {
+  background: rgba(0, 0, 0, 0.85);
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 2px solid #ffcc00;
+  box-shadow: 0px 0px 20px rgba(255, 204, 0, 0.7);
+  backdrop-filter: blur(10px);
+  width: 100%;
+}
+
+.terms-section {
+  margin-bottom: 1.5rem;
+}
+
+.section-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ffcc00;
+  margin-bottom: 0.7rem;
+  border-bottom: 1px solid rgba(255, 204, 0, 0.3);
+  padding-bottom: 0.3rem;
+}
+
+.section-text {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #bbbbbb;
+  margin-bottom: 0.7rem;
+}
+
+.section-list {
+  margin-left: 1.5rem;
+  margin-bottom: 0.7rem;
+}
+
+.section-list li {
+  color: #bbbbbb;
+  margin-bottom: 0.4rem;
+  line-height: 1.4;
+  font-size: 0.9rem;
+}
+
+.section-list li strong {
+  color: #dddddd;
+}
+
+.contact-info {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.7rem;
+  border-radius: 0.5rem;
+  display: inline-block;
+}
+
+.terms-date {
+  font-style: italic;
+  color: #aaaaaa;
+  text-align: right;
+  margin-top: 2rem;
+}
+
+.terms-footer {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.terms-button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 0.75rem;
+  background: linear-gradient(to right, #ffcc00, #ffd700);
+  color: black;
+  box-shadow: 0px 4px 10px rgba(255, 204, 0, 0.5);
+  transition: all 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+  margin-top: 1rem;
+}
+
+.terms-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 6px 14px rgba(255, 204, 0, 0.8);
+}
