@@ -15,8 +15,8 @@ const API_CONFIG = {
     // If the API is hosted at a different domain:
     // baseURL: 'https://api.your-domain.com',
     
-    // If the API is at the same domain but with /api prefix:
-    baseURL: '/api',
+    // If the API is at the same domain:
+    baseURL: '',  // Empty string to avoid path duplication
     timeout: 15000,
   },
   
