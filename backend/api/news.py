@@ -1,6 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, status, Query, Header
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.future import select
+from sqlalchemy.orm import Session
 from sqlalchemy import desc, func
 from typing import List, Optional
 from pydantic import BaseModel
@@ -65,10 +64,10 @@ def create_slug(title: str) -> str:
     return slug
 
 @router.post("/", response_model=NewsArticleResponse, status_code=status.HTTP_201_CREATED)
-async def create_news_article(
+def create_news_article(
     article: NewsArticleCreate,
     user: User = Depends(validate_token),
-    db: AsyncSession = Depends(get_db)
+    db: Session = Depends(get_db)
 ):
     """Create a new news article (admin only)."""
     try:
@@ -84,8 +83,7 @@ async def create_news_article(
         slug = create_slug(article.title)
         
         # Check for duplicate slug
-        result = await db.execute(select(NewsArticle).where(NewsArticle.slug == slug))
-        existing_article = result.scalars().first()
+        existing_article = db.query(NewsArticle).filter(NewsArticle.slug == slug).first()
         if existing_article:
             # Append a unique identifier to make slug unique
             slug = f"{slug}-{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}"
@@ -125,8 +123,8 @@ async def create_news_article(
         )
         
         db.add(db_article)
-        await db.commit()
-        await db.refresh(db_article)
+        db.commit()
+        db.refresh(db_article)
         
         print(f"Article created: {db_article.id} - {db_article.title}")
         return db_article
@@ -135,7 +133,7 @@ async def create_news_article(
         raise he
     except Exception as e:
         print(f"Error creating article: {str(e)}")
-        await db.rollback()
+        db.rollback()
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Error creating article: {str(e)}"
@@ -149,13 +147,13 @@ class PaginatedNewsResponse(BaseModel):
     pages: int
 
 @router.get("/", response_model=PaginatedNewsResponse)
-async def get_news_articles(
+def get_news_articles(
     page: int = 1,
     size: int = 6,
     category: Optional[str] = None,
     language: Optional[str] = Query(None),
     accept_language: Optional[str] = Header(None),
-    db: AsyncSession = Depends(get_db)
+    db: Session = Depends(get_db)
 ):
     """
     Get a paginated list of news articles, optionally filtered by category.
@@ -175,21 +173,17 @@ async def get_news_articles(
     # Calculate skip from page and size
     skip = (page - 1) * size
     
-    # Create base query
-    base_query = select(NewsArticle).where(NewsArticle.published == True)
+    # Create base query for count
+    query = db.query(NewsArticle).filter(NewsArticle.published == True)
     
     if category:
-        base_query = base_query.where(NewsArticle.category == category)
+        query = query.filter(NewsArticle.category == category)
     
     # Get total count
-    count_query = select(func.count()).select_from(base_query.subquery())
-    result = await db.execute(count_query)
-    total = result.scalar()
+    total = query.count()
     
     # Get paginated results
-    query = base_query.order_by(desc(NewsArticle.published_date)).offset(skip).limit(size)
-    result = await db.execute(query)
-    articles = result.scalars().all()
+    articles = query.order_by(desc(NewsArticle.published_date)).offset(skip).limit(size).all()
     
     # Calculate total pages
     pages = (total + size - 1) // size  # Ceiling division
@@ -230,11 +224,11 @@ async def get_news_articles(
     return response
 
 @router.get("/{article_id}", response_model=NewsArticleResponse)
-async def get_news_article(
+def get_news_article(
     article_id: int,
     language: Optional[str] = Query(None),
     accept_language: Optional[str] = Header(None),
-    db: AsyncSession = Depends(get_db)
+    db: Session = Depends(get_db)
 ):
     """
     Get a specific news article by ID.
@@ -245,8 +239,7 @@ async def get_news_article(
     # Import translation functions
     from translation import get_preferred_language, translate_dict
     
-    result = await db.execute(select(NewsArticle).where(NewsArticle.id == article_id))
-    article = result.scalars().first()
+    article = db.query(NewsArticle).filter(NewsArticle.id == article_id).first()
     
     if article is None:
         raise HTTPException(
@@ -287,11 +280,11 @@ async def get_news_article(
     return article
 
 @router.get("/slug/{slug}", response_model=NewsArticleResponse)
-async def get_news_article_by_slug(
+def get_news_article_by_slug(
     slug: str,
     language: Optional[str] = Query(None),
     accept_language: Optional[str] = Header(None),
-    db: AsyncSession = Depends(get_db)
+    db: Session = Depends(get_db)
 ):
     """
     Get a specific news article by slug.
@@ -302,8 +295,7 @@ async def get_news_article_by_slug(
     # Import translation functions
     from translation import get_preferred_language, translate_dict
     
-    result = await db.execute(select(NewsArticle).where(NewsArticle.slug == slug))
-    article = result.scalars().first()
+    article = db.query(NewsArticle).filter(NewsArticle.slug == slug).first()
     
     if article is None:
         raise HTTPException(
@@ -344,11 +336,11 @@ async def get_news_article_by_slug(
     return article
 
 @router.put("/{article_id}", response_model=NewsArticleResponse)
-async def update_news_article(
+def update_news_article(
     article_id: int,
     article_update: NewsArticleUpdate,
     user: User = Depends(validate_token),
-    db: AsyncSession = Depends(get_db)
+    db: Session = Depends(get_db)
 ):
     """Update an existing news article (admin only)."""
     try:
@@ -359,8 +351,7 @@ async def update_news_article(
             )
         
         # Get the existing article
-        result = await db.execute(select(NewsArticle).where(NewsArticle.id == article_id))
-        db_article = result.scalars().first()
+        db_article = db.query(NewsArticle).filter(NewsArticle.id == article_id).first()
         
         if db_article is None:
             raise HTTPException(
@@ -375,11 +366,10 @@ async def update_news_article(
             db_article.slug = create_slug(article_update.title)
             
             # Check for duplicate slug
-            result = await db.execute(select(NewsArticle).where(
+            existing_article = db.query(NewsArticle).filter(
                 NewsArticle.slug == db_article.slug,
                 NewsArticle.id != article_id
-            ))
-            existing_article = result.scalars().first()
+            ).first()
             if existing_article:
                 # Append a unique identifier to make slug unique
                 db_article.slug = f"{db_article.slug}-{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}"
@@ -405,23 +395,23 @@ async def update_news_article(
         # Update timestamp
         db_article.updated_at = datetime.datetime.utcnow()
         
-        await db.commit()
-        await db.refresh(db_article)
+        db.commit()
+        db.refresh(db_article)
         return db_article
     except HTTPException as he:
         raise he
     except Exception as e:
-        await db.rollback()
+        db.rollback()
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Error updating article: {str(e)}"
         )
 
 @router.delete("/{article_id}", status_code=status.HTTP_204_NO_CONTENT)
-async def delete_news_article(
+def delete_news_article(
     article_id: int,
     user: User = Depends(validate_token),
-    db: AsyncSession = Depends(get_db)
+    db: Session = Depends(get_db)
 ):
     """Delete a news article (admin only)."""
     try:
@@ -432,8 +422,7 @@ async def delete_news_article(
             )
         
         # Get the existing article
-        result = await db.execute(select(NewsArticle).where(NewsArticle.id == article_id))
-        db_article = result.scalars().first()
+        db_article = db.query(NewsArticle).filter(NewsArticle.id == article_id).first()
         
         if db_article is None:
             raise HTTPException(
@@ -441,13 +430,13 @@ async def delete_news_article(
                 detail="Article not found"
             )
         
-        await db.delete(db_article)
-        await db.commit()
+        db.delete(db_article)
+        db.commit()
         return None
     except HTTPException as he:
         raise he
     except Exception as e:
-        await db.rollback()
+        db.rollback()
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Error deleting article: {str(e)}"

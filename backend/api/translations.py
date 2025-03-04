@@ -10,12 +10,12 @@ from translation import get_preferred_language, translate_text, translate_dict, 
 router = APIRouter()
 
 @router.get("/language")
-async def get_language(language: str = Depends(get_preferred_language)):
+def get_language(language: str = Depends(get_preferred_language)):
     """Get the current language based on request headers or query parameters"""
     return {"language": language}
 
 @router.get("/ui-elements")
-async def get_ui_translations(language: str = Depends(get_preferred_language)):
+def get_ui_translations(language: str = Depends(get_preferred_language)):
     """Get all UI element translations for a specific language"""
     if language not in TRANSLATIONS:
         language = "en"  # Fallback to English

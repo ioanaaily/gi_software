@@ -28,7 +28,7 @@ class Settings(BaseSettings):
     # Database Settings
     DATABASE_URL: str = os.getenv(
         "DATABASE_URL", 
-        "postgresql+asyncpg://postgres:postgres@localhost/gi_software"
+        "mysql+pymysql://root:@localhost:3306/gi_software"
     )
     
     # Security Settings

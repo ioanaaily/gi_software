@@ -1,6 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, status, Header, Query
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.future import select
+from sqlalchemy.orm import Session
 from sqlalchemy import desc
 from typing import List, Optional
 import datetime
@@ -15,7 +14,7 @@ from models import NewsArticle, User
 router = APIRouter()
 
 @router.get("/")
-async def test(language: Optional[str] = Query(None), accept_language: Optional[str] = Header(None)):
+def test(language: Optional[str] = Query(None), accept_language: Optional[str] = Header(None)):
     """
     Simple test endpoint to verify API is working with translation support.
     
@@ -34,12 +33,10 @@ async def test(language: Optional[str] = Query(None), accept_language: Optional[
         return {"message": "API test endpoint is working", "language": "en"}
 
 @router.get("/articles", response_model=List[dict])
-async def test_get_articles(db: AsyncSession = Depends(get_db)):
+def test_get_articles(db: Session = Depends(get_db)):
     """Simple test endpoint to get all articles without authentication."""
     try:
-        query = select(NewsArticle)
-        result = await db.execute(query)
-        articles = result.scalars().all()
+        articles = db.query(NewsArticle).all()
         
         # Convert to dict for easier debugging
         article_list = []
@@ -62,13 +59,11 @@ async def test_get_articles(db: AsyncSession = Depends(get_db)):
         )
 
 @router.post("/article", status_code=status.HTTP_201_CREATED)
-async def test_create_article(db: AsyncSession = Depends(get_db)):
+def test_create_article(db: Session = Depends(get_db)):
     """Simple test endpoint to create an article without authentication."""
     try:
         # Get the admin user (for author_id)
-        query = select(User)
-        result = await db.execute(query)
-        users = result.scalars().all()
+        users = db.query(User).all()
         
         # Debug user info
         print(f"Available users: {[{'id': u.id, 'email': u.email} for u in users]}")
@@ -93,8 +88,8 @@ async def test_create_article(db: AsyncSession = Depends(get_db)):
         
         print(f"Creating test article with author_id={author_id}")
         db.add(test_article)
-        await db.commit()
-        await db.refresh(test_article)
+        db.commit()
+        db.refresh(test_article)
         
         print(f"Test article created with ID: {test_article.id}")
         return {
@@ -111,12 +106,11 @@ async def test_create_article(db: AsyncSession = Depends(get_db)):
         )
 
 @router.delete("/article/{article_id}", status_code=status.HTTP_200_OK)
-async def test_delete_article(article_id: int, db: AsyncSession = Depends(get_db)):
+def test_delete_article(article_id: int, db: Session = Depends(get_db)):
     """Simple test endpoint to delete an article without authentication."""
     try:
         # Find the article
-        result = await db.execute(select(NewsArticle).where(NewsArticle.id == article_id))
-        article = result.scalars().first()
+        article = db.query(NewsArticle).filter(NewsArticle.id == article_id).first()
         
         if not article:
             raise HTTPException(
@@ -125,8 +119,8 @@ async def test_delete_article(article_id: int, db: AsyncSession = Depends(get_db
             )
         
         # Delete the article
-        await db.delete(article)
-        await db.commit()
+        db.delete(article)
+        db.commit()
         
         return {
             "success": True,
@@ -141,12 +135,11 @@ async def test_delete_article(article_id: int, db: AsyncSession = Depends(get_db
         )
 
 @router.put("/article/{article_id}", status_code=status.HTTP_200_OK)
-async def test_update_article(article_id: int, db: AsyncSession = Depends(get_db)):
+def test_update_article(article_id: int, db: Session = Depends(get_db)):
     """Simple test endpoint to update an article without authentication."""
     try:
         # Find the article
-        result = await db.execute(select(NewsArticle).where(NewsArticle.id == article_id))
-        article = result.scalars().first()
+        article = db.query(NewsArticle).filter(NewsArticle.id == article_id).first()
         
         if not article:
             raise HTTPException(
@@ -160,8 +153,8 @@ async def test_update_article(article_id: int, db: AsyncSession = Depends(get_db
         article.excerpt = f"This article was updated at {now}"
         article.updated_at = now
         
-        await db.commit()
-        await db.refresh(article)
+        db.commit()
+        db.refresh(article)
         
         return {
             "success": True,

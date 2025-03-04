@@ -5,19 +5,23 @@ A modern web application for processing documents and managing AI news articles.
 ## Backend Setup
 
 ### Prerequisites
-- Python 3.8 or higher
-- PostgreSQL database
+- Python 3.6 or higher
+- MySQL database
 - Node.js 14+ (for frontend)
 
 ### Installation
 
-1. Configure your PostgreSQL database by editing the `.env` file in the backend directory:
+1. Configure your MySQL database by editing the `.env` file in the backend directory:
    ```
    # Copy the example environment file first
    cp backend/.env.example backend/.env
    
    # Then edit the values as needed:
-   DATABASE_URL=postgresql+asyncpg://your_username:your_password@localhost/gi_software
+   DB_USER=your_username
+   DB_PASSWORD=your_password
+   DB_HOST=localhost
+   DB_PORT=3306
+   DB_NAME=gi_software
    SECRET_KEY=your_secure_secret_key
    ENVIRONMENT=development
    ```
@@ -114,7 +118,7 @@ The backend includes test endpoints for working with news articles without authe
 sudo apt update && sudo apt upgrade -y
 
 # Install dependencies
-sudo apt install -y python3-pip python3-venv postgresql nginx certbot python3-certbot-nginx
+sudo apt install -y python3-pip python3-venv mysql-server nginx certbot python3-certbot-nginx
 
 # Install Node.js
 curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
@@ -124,10 +128,11 @@ sudo apt install -y nodejs
 #### 2. Database Setup
 
 ```bash
-# Create PostgreSQL user and database
-sudo -u postgres psql -c "CREATE USER gi_user WITH PASSWORD 'secure_password';"
-sudo -u postgres psql -c "CREATE DATABASE gi_software;"
-sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE gi_software TO gi_user;"
+# Create MySQL user and database
+sudo mysql -e "CREATE DATABASE gi_software;"
+sudo mysql -e "CREATE USER 'gi_user'@'localhost' IDENTIFIED BY 'secure_password';"
+sudo mysql -e "GRANT ALL PRIVILEGES ON gi_software.* TO 'gi_user'@'localhost';"
+sudo mysql -e "FLUSH PRIVILEGES;"
 ```
 
 #### 3. Application Setup
@@ -146,7 +151,11 @@ nano .env  # Edit with production values
 Edit the `.env` file with production values:
 ```
 ENVIRONMENT=production
-DATABASE_URL=postgresql+asyncpg://gi_user:secure_password@localhost/gi_software
+DB_USER=gi_user
+DB_PASSWORD=secure_password
+DB_HOST=localhost
+DB_PORT=3306
+DB_NAME=gi_software
 SECRET_KEY=your_secure_random_key
 DEFAULT_ADMIN_PASSWORD=your_secure_admin_password
 ```

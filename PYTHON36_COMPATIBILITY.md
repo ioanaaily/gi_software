@@ -7,7 +7,7 @@ This document outlines the changes made to ensure the GI Software project works 
 ### 1. Database Layer
 - Replaced SQLAlchemy's async ORM (requires Python 3.7+) with traditional synchronous SQLAlchemy ORM
 - Changed to traditional session handling instead of async context managers
-- Updated database connection string to use synchronous drivers
+- Updated database connection string to use MySQL with pymysql driver instead of PostgreSQL
 
 ### 2. FastAPI Routes
 - Converted `async def` route handlers to regular `def` functions
@@ -19,7 +19,8 @@ This document outlines the changes made to ensure the GI Software project works 
   - FastAPI < 0.69.0
   - Uvicorn < 0.15.0
   - SQLAlchemy < 1.4.0
-  - Replaced asyncpg with psycopg2-binary
+  - Replaced asyncpg with pymysql for MySQL support
+  - Added cryptography (required for pymysql)
 - Added backporting packages needed for Python 3.6:
   - dataclasses (backport)
   - typing_extensions
