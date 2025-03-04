@@ -4,8 +4,7 @@ import sys
 import bcrypt
 from datetime import datetime, timedelta
 from fastapi import APIRouter, Depends, HTTPException, Header
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.future import select
+from sqlalchemy.orm import Session
 from typing import Optional
 
 # Add parent directory to path for imports
@@ -27,12 +26,10 @@ def hash_password(password: str) -> str:
     hashed_password = bcrypt.hashpw(password_bytes, salt)
     return hashed_password.decode('utf-8')
 
-async def verify_user(email: str, password: str, db: AsyncSession):
+def verify_user(email: str, password: str, db: Session):
     """Verify user credentials from the database."""
     print(f"Attempting to verify user: {email}")
-    query = select(User).where(User.email == email)
-    result = await db.execute(query)
-    user = result.scalars().first()
+    user = db.query(User).filter(User.email == email).first()
     
     if not user:
         print(f"User not found: {email}")
@@ -66,7 +63,7 @@ def create_access_token(data: dict, expires_delta: timedelta):
     to_encode.update({"exp": expire})
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
-async def validate_token(authorization: Optional[str] = Header(None), db: AsyncSession = Depends(get_db)):
+def validate_token(authorization: Optional[str] = Header(None), db: Session = Depends(get_db)):
     """Validate JWT token and return user."""
     if not authorization:
         raise HTTPException(
@@ -91,9 +88,7 @@ async def validate_token(authorization: Optional[str] = Header(None), db: AsyncS
             )
             
         # Get user from database
-        query = select(User).where(User.email == email)
-        result = await db.execute(query)
-        user = result.scalars().first()
+        user = db.query(User).filter(User.email == email).first()
         
         if user is None:
             raise HTTPException(
@@ -116,9 +111,9 @@ class LoginRequest(BaseModel):
     password: str
 
 @router.post("/login")
-async def login_json(
+def login_json(
     login_data: LoginRequest,
-    db: AsyncSession = Depends(get_db)
+    db: Session = Depends(get_db)
 ):
     """Handle user login with JSON and return access token."""
     try:
@@ -127,7 +122,7 @@ async def login_json(
             
         print(f"Login attempt for: {login_data.email}")
         
-        user = await verify_user(login_data.email, login_data.password, db)
+        user = verify_user(login_data.email, login_data.password, db)
         if not user:
             raise HTTPException(status_code=401, detail="Invalid credentials")
 
@@ -153,10 +148,10 @@ async def login_json(
         )
 
 @router.post("/login-form")
-async def login_form(
+def login_form(
     email: str = Form(...),
     password: str = Form(...),
-    db: AsyncSession = Depends(get_db)
+    db: Session = Depends(get_db)
 ):
     """Handle user login with form data and return access token."""
     try:
@@ -165,7 +160,7 @@ async def login_form(
             
         print(f"Form login attempt for: {email}")
         
-        user = await verify_user(email, password, db)
+        user = verify_user(email, password, db)
         if not user:
             raise HTTPException(status_code=401, detail="Invalid credentials")
 

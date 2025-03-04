@@ -1,6 +1,5 @@
 from fastapi import APIRouter, Depends, Header, Query, HTTPException
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.future import select
+from sqlalchemy.orm import Session
 from pydantic import BaseModel
 from typing import Optional, List
 import os
@@ -26,11 +25,11 @@ class ContactMessageResponse(BaseModel):
     message: str
 
 @router.post("/")
-async def submit_contact(
+def submit_contact(
     form: ContactForm, 
     language: Optional[str] = Query(None),
     accept_language: Optional[str] = Header(None),
-    db: AsyncSession = Depends(get_db)
+    db: Session = Depends(get_db)
 ):
     """
     Handles contact form submissions and stores data in the database.
@@ -45,7 +44,7 @@ async def submit_contact(
     # Create and store the message
     new_message = ContactMessage(name=form.name, email=form.email, message=form.message)
     db.add(new_message)
-    await db.commit()
+    db.commit()
     
     # Return appropriate message based on language
     if preferred_lang == "ro":
@@ -54,8 +53,8 @@ async def submit_contact(
         return {"success": True, "message": "Message stored successfully"}
         
 @router.get("/messages", response_model=List[ContactMessageResponse])
-async def get_contact_messages(
-    db: AsyncSession = Depends(get_db),
+def get_contact_messages(
+    db: Session = Depends(get_db),
     current_user: User = Depends(validate_token)
 ):
     """
@@ -69,8 +68,6 @@ async def get_contact_messages(
         )
     
     # Retrieve all contact messages
-    query = select(ContactMessage).order_by(ContactMessage.id.desc())
-    result = await db.execute(query)
-    messages = result.scalars().all()
+    messages = db.query(ContactMessage).order_by(ContactMessage.id.desc()).all()
     
     return messages

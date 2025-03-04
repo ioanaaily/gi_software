@@ -49,5 +49,5 @@ app.include_router(test_router, prefix="/api/test", tags=["Test"])
 app.include_router(translations_router, prefix="/api/translations", tags=["Translations"])
 
 @app.get("/")
-async def root():
+def root():
     return {"message": "FastAPI Backend Running!"}

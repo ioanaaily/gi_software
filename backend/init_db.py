@@ -1,4 +1,3 @@
-import asyncio
 import datetime
 import sys
 import os
@@ -6,24 +5,20 @@ import bcrypt
 
 # Add parent directory to path for imports
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from database import engine, get_db
-from sqlalchemy.future import select
+from database import init_db as init_database_tables, SessionLocal
+from sqlalchemy.orm import Session
 from models import Base, User, NewsArticle
 
-async def create_tables():
+def create_tables():
     """Create database tables."""
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
+    # Tables are created via init_db in database.py
+    init_database_tables()
     print("Database tables created")
 
-async def create_admin_user():
+def create_admin_user(db: Session):
     """Create an admin user if it doesn't exist."""
-    db = await anext(get_db())
-    
     # Check if admin user already exists
-    query = select(User).where(User.email == "admin@gisoftware.com")
-    result = await db.execute(query)
-    admin = result.scalars().first()
+    admin = db.query(User).filter(User.email == "admin@gisoftware.com").first()
     
     if admin is None:
         # Create admin user with bcrypt hashed password
@@ -38,22 +33,18 @@ async def create_admin_user():
             created_at=datetime.datetime.utcnow()
         )
         db.add(admin)
-        await db.commit()
-        await db.refresh(admin)
+        db.commit()
+        db.refresh(admin)
         print("Admin user created")
     else:
         print("Admin user already exists")
     
     return admin
 
-async def create_sample_news_articles(admin_id):
+def create_sample_news_articles(db: Session, admin_id):
     """Create sample news articles."""
-    db = await anext(get_db())
-    
     # Check if articles already exist
-    query = select(NewsArticle)
-    result = await db.execute(query)
-    if result.scalars().first():
+    if db.query(NewsArticle).first():
         print("News articles already exist, skipping sample data creation")
         return
     
@@ -147,25 +138,26 @@ async def create_sample_news_articles(admin_id):
         )
         db.add(article)
     
-    await db.commit()
+    db.commit()
     print("Sample news articles created")
 
-async def init_db():
+def init_db():
     """Initialize the database with tables and sample data."""
     # Create tables
-    await create_tables()
+    create_tables()
     
-    # Create admin user
-    admin = await create_admin_user()
-    
-    # Create sample news articles
-    await create_sample_news_articles(admin.id)
-    
-    print("Database initialized successfully")
-
-async def init_db_async():
-    """Async function to initialize the database, for use from other modules."""
-    await init_db()
+    # Create a session to use for sample data
+    db = SessionLocal()
+    try:
+        # Create admin user
+        admin = create_admin_user(db)
+        
+        # Create sample news articles
+        create_sample_news_articles(db, admin.id)
+        
+        print("Database initialized successfully")
+    finally:
+        db.close()
 
 if __name__ == "__main__":
-    asyncio.run(init_db())
+    init_db()
