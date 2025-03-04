@@ -26,10 +26,8 @@ else:
     # Production - Allow your production domains
     ALLOWED_ORIGINS = [
         # Add your production domain(s) here
-        "https://your-domain.com",
-        "https://www.your-domain.com",
-        # Or allow all with "*" (less secure)
-        "*",
+        "https://gi-software.com",
+        "https://www.gi-software.com",
     ]
 
 # Add CORS Middleware to allow frontend requests
