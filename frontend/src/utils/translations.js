@@ -15,6 +15,8 @@ const translations = {
     contact: 'Contact',
     news: 'AI News',
     services: 'Services',
+    aws: 'AWS Services',
+    gcp: 'GCP Services',
     login: 'Login',
 
     // Common UI elements
@@ -99,6 +101,10 @@ const translations = {
     service_mobile_applications_desc: 'Create intuitive, high-performance mobile apps for iOS and Android platforms with Google Firebase integration that engage users and deliver seamless experiences across all devices.',
     service_cloud_solutions: 'Cloud Solutions',
     service_cloud_solutions_desc: 'Leverage the power of AWS or Google Cloud and other cloud technologies for scalable, reliable, and cost-effective infrastructure solutions that accelerate your business growth.',
+    service_aws: 'AWS Services',
+    service_aws_desc: 'Expert Amazon Web Services implementation, management, and optimization. From EC2 and S3 to Lambda and RDS, we ensure your AWS infrastructure is secure, efficient, and cost-effective.',
+    service_gcp: 'Google Cloud Platform Services',
+    service_gcp_desc: 'Professional Google Cloud Platform implementation, management, and optimization. From Compute Engine and Cloud Storage to BigQuery and Kubernetes Engine, we maximize your GCP investment.',
     service_seo_optimization: 'SEO & Search Engine Optimization',
     service_seo_optimization_desc: 'Achieve top Google rankings with our comprehensive SEO solutions. We optimize your digital presence using advanced analytics, technical SEO expertise, and content strategies that drive organic traffic and conversions.',
 
@@ -257,6 +263,8 @@ const translations = {
     contact: 'Contact',
     news: 'Știri AI',
     services: 'Servicii',
+    aws: 'Servicii AWS',
+    gcp: 'Servicii GCP',
     login: 'Autentificare',
 
     // Common UI elements

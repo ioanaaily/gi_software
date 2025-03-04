@@ -21,6 +21,9 @@ function Admin() {
   const [totalPages, setTotalPages] = useState(1);
   const [totalArticles, setTotalArticles] = useState(0);
   
+  // State for contact messages
+  const [contactMessages, setContactMessages] = useState([]);
+  
   // State for news form
   const [newsForm, setNewsForm] = useState({
     id: null,
@@ -38,8 +41,13 @@ function Admin() {
     if (token) {
       setIsLoggedIn(true);
       fetchNews();
+      
+      // Fetch contact messages if the active tab is messages
+      if (activeTab === "messages") {
+        fetchContactMessages();
+      }
     }
-  }, [currentPage]); // Re-fetch when page changes
+  }, [currentPage, activeTab]); // Re-fetch when page changes or tab changes
   
   // Function to handle login
   const handleLogin = async (e) => {
@@ -100,6 +108,10 @@ function Admin() {
   
   // Function to fetch news items
   const fetchNews = async () => {
+    if (activeTab !== "list" && activeTab !== "add" && activeTab !== "edit") {
+      return; // Don't fetch news if not on news tab
+    }
+  
     setLoading(true);
     setError(null);
     
@@ -143,6 +155,32 @@ function Admin() {
       setNewsItems([]);
       setTotalPages(1);
       setTotalArticles(0);
+      setLoading(false);
+    }
+  };
+  
+  // Function to fetch contact messages
+  const fetchContactMessages = async () => {
+    setLoading(true);
+    setError(null);
+    
+    try {
+      console.log("Fetching contact messages from server");
+      
+      // Get the messages from the API
+      const response = await api.get('/api/contact/messages');
+      
+      console.log("Contact messages received:", response.data);
+      setContactMessages(response.data);
+      setLoading(false);
+    } catch (err) {
+      console.error("Error fetching contact messages:", err);
+      if (err.response) {
+        setError(`Failed to load messages: ${err.response.data.detail || 'Server error'}`);
+      } else {
+        setError("Failed to load messages. Make sure the backend server is running.");
+      }
+      setContactMessages([]);
       setLoading(false);
     }
   };
@@ -378,6 +416,17 @@ function Admin() {
                 Add New Article
               </button>
             </li>
+            <li className="admin-nav-item">
+              <button 
+                className={`admin-nav-link ${activeTab === 'messages' ? 'active' : ''}`}
+                onClick={() => {
+                  setActiveTab('messages');
+                  fetchContactMessages();
+                }}
+              >
+                My Messages
+              </button>
+            </li>
           </ul>
         </div>
         
@@ -469,6 +518,48 @@ function Admin() {
                       </button>
                     </div>
                   )}
+                </>
+              )}
+            </>
+          )}
+          
+          {activeTab === 'messages' && (
+            <>
+              <h2 className="admin-section-title">My Messages</h2>
+              {loading ? (
+                <div className="admin-loading">Loading...</div>
+              ) : (
+                <>
+                  <table className="admin-table">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Message</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {Array.isArray(contactMessages) && contactMessages.length > 0 ? contactMessages.map(msg => (
+                        <tr key={msg.id}>
+                          <td>{msg.name}</td>
+                          <td>
+                            <a href={`mailto:${msg.email}`} className="email-link">
+                              {msg.email}
+                            </a>
+                          </td>
+                          <td className="message-cell">
+                            <div className="message-content">
+                              {msg.message}
+                            </div>
+                          </td>
+                        </tr>
+                      )) : (
+                        <tr>
+                          <td colSpan="3" style={{textAlign: 'center'}}>No messages available</td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
                 </>
               )}
             </>

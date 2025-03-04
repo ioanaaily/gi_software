@@ -415,6 +415,32 @@
   color: #F8FAFC; /* Off-white */
 }
 
+/* Email link styling */
+.email-link {
+  color: #38BDF8; /* Light blue */
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.email-link:hover {
+  color: #0EA5E9; /* Darker blue */
+  text-decoration: underline;
+}
+
+/* Message cell styling */
+.message-cell {
+  max-width: 350px;
+}
+
+.message-content {
+  max-height: 100px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding-right: 10px;
+  line-height: 1.5;
+}
+
 /* Action Buttons */
 .admin-actions {
   display: flex;

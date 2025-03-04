@@ -2,6 +2,58 @@ import React, { useState, useEffect } from "react";
 import api from "../api/axiosConfig";
 import "../styles/news.css";
 
+// Fallback demo news items for development and error handling
+const demoNewsItems = [
+  {
+    id: 1,
+    title: "AWS Lambda Now Supports 10GB Memory Allocation",
+    category: "AWS",
+    published_date: "2025-03-01",
+    excerpt: "Amazon Web Services has increased Lambda function memory limits to 10GB, enabling more powerful serverless applications.",
+    image_url: "https://via.placeholder.com/600x400?text=AWS+Lambda"
+  },
+  {
+    id: 2,
+    title: "Google Cloud Introduces New AI Infrastructure",
+    category: "GCP",
+    published_date: "2025-02-28",
+    excerpt: "Google Cloud Platform has launched specialized VM instances optimized for machine learning workloads with enhanced TPU integration.",
+    image_url: "https://via.placeholder.com/600x400?text=Google+Cloud+AI"
+  },
+  {
+    id: 3,
+    title: "AWS SageMaker Adds Auto-Scaling Features",
+    category: "AWS",
+    published_date: "2025-02-25",
+    excerpt: "Amazon SageMaker now includes intelligent auto-scaling for ML model training and inference based on workload patterns.",
+    image_url: "https://via.placeholder.com/600x400?text=AWS+SageMaker"
+  },
+  {
+    id: 4,
+    title: "GCP Vertex AI Enhances NLP Capabilities",
+    category: "GCP",
+    published_date: "2025-02-20",
+    excerpt: "Google's Vertex AI platform now supports advanced natural language processing features with improved multilingual support.",
+    image_url: "https://via.placeholder.com/600x400?text=GCP+Vertex+AI"
+  },
+  {
+    id: 5,
+    title: "AWS Introduces Quantum Computing Service",
+    category: "AWS",
+    published_date: "2025-02-15",
+    excerpt: "Amazon Web Services announces a new quantum computing service for businesses to explore quantum algorithms and solutions.",
+    image_url: "https://via.placeholder.com/600x400?text=AWS+Quantum"
+  },
+  {
+    id: 6,
+    title: "Google Cloud Run Adds WebSocket Support",
+    category: "GCP",
+    published_date: "2025-02-10",
+    excerpt: "Google Cloud Run now supports WebSockets for real-time communication in serverless applications with automatic scaling.",
+    image_url: "https://via.placeholder.com/600x400?text=GCP+Cloud+Run"
+  }
+];
+
 function AINews() {
   const [newsItems, setNewsItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,7 +68,15 @@ function AINews() {
       try {
         // Include pagination parameters in the request
         console.log(`Fetching news page ${currentPage}`);
-        const response = await api.get(`/api/news/?page=${currentPage}&size=6`);
+        
+        // Log API base URL for debugging
+        console.log("API Base URL:", api.defaults.baseURL);
+        
+        // Try both with and without trailing slash
+        const endpoint = `/api/news?page=${currentPage}&size=6`;
+        console.log(`Requesting from: ${endpoint}`);
+        
+        const response = await api.get(endpoint);
         console.log("API Response:", response.data);
 
         // Handle paginated response format
@@ -40,10 +100,23 @@ function AINews() {
         setLoading(false);
       } catch (err) {
         console.error("Error fetching news:", err);
-        setError("Failed to load AI news. Please try again later.");
+        // More detailed error message for debugging
+        const errorMessage = err.response ? 
+          `Error: ${err.response.status} - ${err.response.statusText}` :
+          `Network Error: ${err.message}`;
+        setError(`Failed to load news: ${errorMessage}`);
         setLoading(false);
 
-        // Fallback to demo data if API fails (remove in production)
+        // Log more detailed error info
+        if (err.response) {
+          console.log("Error Response Data:", err.response.data);
+          console.log("Error Response Status:", err.response.status);
+          console.log("Error Response Headers:", err.response.headers);
+        } else if (err.request) {
+          console.log("Error Request:", err.request);
+        }
+
+        // Fallback to demo data if API fails (keep for better UX)
         setNewsItems(demoNewsItems);
         setTotalPages(1);
         setTotalItems(demoNewsItems.length);

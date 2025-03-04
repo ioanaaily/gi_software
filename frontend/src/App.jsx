@@ -5,6 +5,7 @@ import { HelmetProvider } from 'react-helmet-async';
 // Import components
 import EmergencyNewsComponent from './components/EmergencyNewsComponent';
 import ArticlePage from './pages/ArticlePage';
+import AINews from './pages/AINews';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import SEO from './components/SEO';
@@ -18,14 +19,19 @@ function App() {
           <SEO />
           
           <Navbar />
-          <main className="flex-grow">
+          {/* Add top padding to account for fixed navbar */}
+          <main className="flex-grow pt-16">
             <Routes>
               {/* Redirect root to AINews */}
               <Route path="/" element={<Navigate to="/news" replace />} />
               
-              {/* AI News routes */}
+              {/* Cloud News routes */}
               <Route path="/news" element={<EmergencyNewsComponent />} />
               <Route path="/news/:slug" element={<ArticlePage />} />
+              
+              {/* AI News routes with pagination */}
+              <Route path="/ai-news" element={<AINews />} />
+              <Route path="/ai-news/:id" element={<ArticlePage />} />
               
               {/* Add a fallback route */}
               <Route path="*" element={

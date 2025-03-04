@@ -8,7 +8,7 @@ const SEO = ({
   keywords,
   canonical,
   ogType = 'website',
-  ogImage = '/logo512.png',
+  ogImage = 'https://ioana-ocr-data-bucket.s3.eu-central-1.amazonaws.com/logo2.png',
   twitterCard = 'summary_large_image',
   article = null,
   structuredData = null

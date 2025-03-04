@@ -2,11 +2,11 @@
  * Language Switcher Component for GI Software frontend
  * 
  * This component provides a toggle between English and Romanian languages.
- * It should be placed in the frontend/src/components directory.
+ * Uses Tailwind CSS for styling instead of separate CSS file.
  */
 
 import React, { useState, useEffect } from 'react';
-import './language-switcher.css'; // Create this CSS file for styling
+import { useTranslation } from '../utils/translations';
 
 const LanguageSwitcher = () => {
   // Get initial language from localStorage or default to English
@@ -32,10 +32,13 @@ const LanguageSwitcher = () => {
   };
 
   return (
-    <div className="language-switcher">
+    <div className="inline-flex items-center ml-2">
       <button 
         onClick={toggleLanguage}
-        className="language-toggle-btn"
+        className="bg-blue-50 border border-blue-200 rounded text-blue-600 
+                  cursor-pointer text-sm font-semibold py-1 px-2.5 transition-all duration-200
+                  hover:bg-blue-100 hover:border-blue-300 hover:shadow-sm
+                  md:text-sm md:py-1.5 md:px-3"
         aria-label={`Switch to ${language === 'en' ? 'Romanian' : 'English'}`}
       >
         {language === 'en' ? 'RO' : 'EN'}
